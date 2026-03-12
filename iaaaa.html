@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viral Rescue Prompt Generator</title>
+    <style>
+        body { font-family: system-ui, sans-serif; background: #f0f2f5; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        button { background: #ff0050; color: white; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; transition: background 0.2s; }
+        button:hover { background: #d40042; }
+        pre { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; white-space: pre-wrap; word-wrap: break-word; font-size: 14px; line-height: 1.6; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Rescue Video Prompt Generator</h2>
+    <button onclick="generatePrompt()">Generate Viral Prompt</button>
+    <pre id="output">Click the button to generate your first prompt.</pre>
+</div>
+
+<script>
+const subjects = [
+    "Species: Kitten\nAge: 5 weeks\nColor: Calico (orange, black, white patches)\nFur condition: Matted with wet mud\nSize: Hand-sized\nPhysical details: Torn right ear tip, large green eyes\nEmotional state: Terrified, frozen in place\nMicro movements: Rapid shallow breathing, slight trembling, quick blinks",
+    "Species: Puppy\nAge: 2 months\nColor: Golden brown\nFur condition: Dusty, covered in dry leaves\nSize: Small, visible ribs\nPhysical details: Oversized floppy ears, one white paw\nEmotional state: Exhausted, crying\nMicro movements: Weak tail wag attempts, shivering, ears pinning back",
+    "Species: Cat\nAge: Adult\nColor: Black\nFur condition: Soaked, flat against body\nSize: Very thin\nPhysical details: Yellow eyes, missing whiskers on left side\nEmotional state: Defensive but weak\nMicro movements: Hissing mouth shape without sound, chest heaving, slow blinking"
+];
+
+const scenarios = [
+    { // Dog vs Kitten concept
+        title: "Title: 🚨 Dog Corners Tiny Kitten! 🥺💔",
+        cut1: "CUT 1 (0–3s) — EXTREME HOOK\nLocation: Dark urban alleyway. Handheld smartphone POV moving quickly toward loud barking. Quick push-zoom reveals a large dog barking at a tiny kitten cornered against a brick wall. High tension, fast movement.",
+        cut2: "CUT 2 (3–6s) — DISCOVERY / PROBLEM\nCamera approaches the cornered kitten. The dog is blocked out of frame. The kitten is pressed flat against the bricks. Micro movements: Kitten's back arches slightly, ears flat, rapid chest breathing, tightly squeezed eyes.",
+        cut3: "CUT 3 (6–9s) — RESCUE ACTION\nA human hand enters frame quickly from the bottom, scooping the kitten up under its belly. Fast, natural handheld motion. The camera pulls back as the kitten is lifted away from the ground.",
+        cut4: "CUT 4 (9–12s) — CLEANING / CARE\nLocation: Inside a car interior. POV shot of the kitten wrapped in a soft grey hoodie. A hand gently wipes its face with a damp tissue. Micro movements: Kitten leans into the wipe, eyes slowly opening and closing, breathing slows.",
+        cut5: "CUT 5 (12–15s) — PAYOFF\nThe kitten is safe, resting next to another sleeping kitten on a warm blanket. Slow push-in zoom. Micro movements: Kitten lets out a silent meow, slow relaxed blinking, tail tucks comfortably around its body."
+    },
+    { // Urban storm drain concept
+        title: "Title: 🚨 Crying Heard Under The Street! 😭🌧️",
+        cut1: "CUT 1 (0–3s) — EXTREME HOOK\nLocation: Wet city street next to a metal storm drain grate. Handheld POV looking down. Faint splashing and crying sounds. Quick push-zoom through the metal bars revealing a small animal struggling in shallow water.",
+        cut2: "CUT 2 (3–6s) — DISCOVERY / PROBLEM\nCamera is close to the grate. The animal looks up toward the lens. Micro movements: Paw slipping on wet concrete, shivering uncontrollably, mouth opening for cries. Autofocus breathes slightly trying to lock onto the subject through the bars.",
+        cut3: "CUT 3 (6–9s) — RESCUE ACTION\nThe heavy metal grate is pulled aside (only hands visible). The camera reaches down into the dark hole. Hands gently grasp the wet animal and pull it up into the daylight. Slight motion blur from the quick upward movement.",
+        cut4: "CUT 4 (9–12s) — CLEANING / CARE\nLocation: Bright bathroom. POV shot of the animal in a sink under warm running water. The mud washes away instantly. Micro movements: Animal shakes its head slightly, ears perk up, eyes widen as it feels the warmth.",
+        cut5: "CUT 5 (12–15s) — PAYOFF\nThe animal is bundled tightly in a thick white towel like a burrito. Camera slowly pushes in. Micro movements: Slow, rhythmic breathing, eyes heavy and falling asleep, a tiny contented ear twitch."
+    }
+];
+
+function generatePrompt() {
+    const subject = subjects[Math.floor(Math.random() * subjects.length)];
+    const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
+    
+    const prompt = `${scenario.title}
+
+VIDEO FORMAT REQUIREMENTS:
+Vertical 9:16
+Duration: 15 seconds
+Style: Ultra-photorealistic, First-person POV smartphone footage, Natural handheld motion, Micro-shakes from breathing, Autofocus breathing, Mild motion blur, No cinematic lighting.
+Audio: Natural environmental sound only (wind, footsteps, animal crying, rustling). No music, no narration, no text overlays.
+Camera: Handheld smartphone, slight push-in and pull-back zooms. No visible human faces.
+
+SUBJECT:
+${subject}
+
+${scenario.cut1}
+
+${scenario.cut2}
+
+${scenario.cut3}
+
+${scenario.cut4}
+
+${scenario.cut5}
+
+CONSTRAINTS:
+- Must include the described micro-movements in every single shot.
+- No static scenes longer than 1 second.
+- No impossible physics, clipping through objects, or unrealistic lighting.
+- The identity of the subject MUST remain exactly consistent across all 5 cuts.`;
+
+    document.getElementById('output').innerText = prompt;
+}
+
+// Generate one immediately on load
+generatePrompt();
+</script>
+
+</body>
+</html>
