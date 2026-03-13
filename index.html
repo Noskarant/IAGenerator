@@ -1,89 +1,1513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Viral Rescue Prompt Generator</title>
-    <style>
-        body { font-family: system-ui, sans-serif; background: #f0f2f5; padding: 20px; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        button { background: #ff0050; color: white; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%; transition: background 0.2s; }
-        button:hover { background: #d40042; }
-        pre { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; white-space: pre-wrap; word-wrap: break-word; font-size: 14px; line-height: 1.6; margin-top: 20px; }
-    </style>
-</head>
-<body>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>🐾 Rescue Prompt Engine v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-<div class="container">
-    <h2>Rescue Video Prompt Generator</h2>
-    <button onclick="generatePrompt()">Generate Viral Prompt</button>
-    <pre id="output">Click the button to generate your first prompt.</pre>
-</div>
-
-<script>
-const subjects = [
-    "Species: Kitten\nAge: 5 weeks\nColor: Calico (orange, black, white patches)\nFur condition: Matted with wet mud\nSize: Hand-sized\nPhysical details: Torn right ear tip, large green eyes\nEmotional state: Terrified, frozen in place\nMicro movements: Rapid shallow breathing, slight trembling, quick blinks",
-    "Species: Puppy\nAge: 2 months\nColor: Golden brown\nFur condition: Dusty, covered in dry leaves\nSize: Small, visible ribs\nPhysical details: Oversized floppy ears, one white paw\nEmotional state: Exhausted, crying\nMicro movements: Weak tail wag attempts, shivering, ears pinning back",
-    "Species: Cat\nAge: Adult\nColor: Black\nFur condition: Soaked, flat against body\nSize: Very thin\nPhysical details: Yellow eyes, missing whiskers on left side\nEmotional state: Defensive but weak\nMicro movements: Hissing mouth shape without sound, chest heaving, slow blinking"
-];
-
-const scenarios = [
-    { // Dog vs Kitten concept
-        title: "Title: 🚨 Dog Corners Tiny Kitten! 🥺💔",
-        cut1: "CUT 1 (0–3s) — EXTREME HOOK\nLocation: Dark urban alleyway. Handheld smartphone POV moving quickly toward loud barking. Quick push-zoom reveals a large dog barking at a tiny kitten cornered against a brick wall. High tension, fast movement.",
-        cut2: "CUT 2 (3–6s) — DISCOVERY / PROBLEM\nCamera approaches the cornered kitten. The dog is blocked out of frame. The kitten is pressed flat against the bricks. Micro movements: Kitten's back arches slightly, ears flat, rapid chest breathing, tightly squeezed eyes.",
-        cut3: "CUT 3 (6–9s) — RESCUE ACTION\nA human hand enters frame quickly from the bottom, scooping the kitten up under its belly. Fast, natural handheld motion. The camera pulls back as the kitten is lifted away from the ground.",
-        cut4: "CUT 4 (9–12s) — CLEANING / CARE\nLocation: Inside a car interior. POV shot of the kitten wrapped in a soft grey hoodie. A hand gently wipes its face with a damp tissue. Micro movements: Kitten leans into the wipe, eyes slowly opening and closing, breathing slows.",
-        cut5: "CUT 5 (12–15s) — PAYOFF\nThe kitten is safe, resting next to another sleeping kitten on a warm blanket. Slow push-in zoom. Micro movements: Kitten lets out a silent meow, slow relaxed blinking, tail tucks comfortably around its body."
-    },
-    { // Urban storm drain concept
-        title: "Title: 🚨 Crying Heard Under The Street! 😭🌧️",
-        cut1: "CUT 1 (0–3s) — EXTREME HOOK\nLocation: Wet city street next to a metal storm drain grate. Handheld POV looking down. Faint splashing and crying sounds. Quick push-zoom through the metal bars revealing a small animal struggling in shallow water.",
-        cut2: "CUT 2 (3–6s) — DISCOVERY / PROBLEM\nCamera is close to the grate. The animal looks up toward the lens. Micro movements: Paw slipping on wet concrete, shivering uncontrollably, mouth opening for cries. Autofocus breathes slightly trying to lock onto the subject through the bars.",
-        cut3: "CUT 3 (6–9s) — RESCUE ACTION\nThe heavy metal grate is pulled aside (only hands visible). The camera reaches down into the dark hole. Hands gently grasp the wet animal and pull it up into the daylight. Slight motion blur from the quick upward movement.",
-        cut4: "CUT 4 (9–12s) — CLEANING / CARE\nLocation: Bright bathroom. POV shot of the animal in a sink under warm running water. The mud washes away instantly. Micro movements: Animal shakes its head slightly, ears perk up, eyes widen as it feels the warmth.",
-        cut5: "CUT 5 (12–15s) — PAYOFF\nThe animal is bundled tightly in a thick white towel like a burrito. Camera slowly pushes in. Micro movements: Slow, rhythmic breathing, eyes heavy and falling asleep, a tiny contented ear twitch."
-    }
-];
-
-function generatePrompt() {
-    const subject = subjects[Math.floor(Math.random() * subjects.length)];
-    const scenario = scenarios[Math.floor(Math.random() * scenarios.length)];
-    
-    const prompt = `${scenario.title}
-
-VIDEO FORMAT REQUIREMENTS:
-Vertical 9:16
-Duration: 15 seconds
-Style: Ultra-photorealistic, First-person POV smartphone footage, Natural handheld motion, Micro-shakes from breathing, Autofocus breathing, Mild motion blur, No cinematic lighting.
-Audio: Natural environmental sound only (wind, footsteps, animal crying, rustling). No music, no narration, no text overlays.
-Camera: Handheld smartphone, slight push-in and pull-back zooms. No visible human faces.
-
-SUBJECT:
-${subject}
-
-${scenario.cut1}
-
-${scenario.cut2}
-
-${scenario.cut3}
-
-${scenario.cut4}
-
-${scenario.cut5}
-
-CONSTRAINTS:
-- Must include the described micro-movements in every single shot.
-- No static scenes longer than 1 second.
-- No impossible physics, clipping through objects, or unrealistic lighting.
-- The identity of the subject MUST remain exactly consistent across all 5 cuts.`;
-
-    document.getElementById('output').innerText = prompt;
+:root{
+  --bg:#08090b;
+  --s0:#0d0f12;
+  --s1:#13161b;
+  --s2:#1a1e25;
+  --border:#222830;
+  --border2:#2d3440;
+  --a:#e8ff47;
+  --a2:#ff4f47;
+  --a3:#47c8ff;
+  --text:#eceae4;
+  --muted:#596270;
+  --muted2:#3d4550;
+  --mono:'DM Mono',monospace;
+  --display:'Bebas Neue',sans-serif;
+  --serif:'Instrument Serif',serif;
 }
 
-// Generate one immediately on load
-generatePrompt();
-</script>
+html{scroll-behavior:smooth}
 
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--mono);
+  font-size:13px;
+  line-height:1.6;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* GRID BACKGROUND */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(232,255,71,0.02) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(232,255,71,0.02) 1px,transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;
+  z-index:0;
+}
+
+.wrap{
+  position:relative;
+  z-index:1;
+  max-width:900px;
+  margin:0 auto;
+  padding:0 1.25rem 6rem;
+}
+
+/* ── HEADER ── */
+.header{
+  padding:3rem 0 2.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+
+.header-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:0.75rem;
+}
+
+.version-badge{
+  font-size:10px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--bg);
+  background:var(--a);
+  padding:0.2rem 0.6rem;
+  font-weight:500;
+}
+
+.compat-badges{
+  display:flex;
+  gap:0.4rem;
+}
+
+.compat-badge{
+  font-size:9px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:0.2rem 0.5rem;
+  border:1px solid var(--border2);
+  color:var(--muted);
+}
+
+h1{
+  font-family:var(--display);
+  font-size:clamp(3.5rem,8vw,6.5rem);
+  line-height:0.92;
+  letter-spacing:0.02em;
+  color:var(--text);
+}
+
+h1 em{
+  color:var(--a);
+  font-style:normal;
+}
+
+.tagline{
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  margin-top:0.5rem;
+}
+
+/* ── CONTROLS ── */
+.controls{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:1rem;
+  margin:2rem 0;
+  align-items:start;
+}
+
+.arc-selector{
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+
+.arc-label{
+  font-size:10px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.arc-options{
+  display:flex;
+  gap:0.5rem;
+  flex-wrap:wrap;
+}
+
+.arc-btn{
+  font-family:var(--mono);
+  font-size:11px;
+  padding:0.4rem 0.75rem;
+  border:1px solid var(--border2);
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  letter-spacing:0.05em;
+  transition:all 0.12s;
+  text-transform:uppercase;
+}
+
+.arc-btn:hover{border-color:var(--a);color:var(--a)}
+.arc-btn.active{border-color:var(--a);background:rgba(232,255,71,0.08);color:var(--a)}
+
+.gen-btn{
+  font-family:var(--display);
+  font-size:1.4rem;
+  letter-spacing:0.08em;
+  padding:0.9rem 2.5rem;
+  background:var(--a);
+  color:var(--bg);
+  border:none;
+  cursor:pointer;
+  transition:all 0.12s;
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+  white-space:nowrap;
+  position:relative;
+  overflow:hidden;
+}
+
+.gen-btn::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,transparent 50%,rgba(255,255,255,0.15));
+  pointer-events:none;
+}
+
+.gen-btn:hover{background:#f5ff6e;transform:translateY(-1px);box-shadow:0 6px 32px rgba(232,255,71,0.25)}
+.gen-btn:active{transform:none}
+.gen-btn.loading{opacity:0.7;pointer-events:none}
+
+.gen-icon{font-size:1.1rem;transition:transform 0.3s}
+.gen-btn.loading .gen-icon{animation:spin 0.6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  display:flex;
+  gap:0;
+  border:1px solid var(--border);
+  margin-bottom:2rem;
+  overflow:hidden;
+}
+
+.stat{
+  flex:1;
+  padding:0.6rem 1rem;
+  border-right:1px solid var(--border);
+  display:flex;
+  flex-direction:column;
+  gap:0.15rem;
+}
+
+.stat:last-child{border-right:none}
+
+.stat-val{
+  font-family:var(--display);
+  font-size:1.4rem;
+  color:var(--a);
+  line-height:1;
+}
+
+.stat-key{
+  font-size:9px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ── OUTPUT ── */
+.output{display:none}
+.output.show{display:block;animation:fadeUp 0.3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* TITLE CARD */
+.title-card{
+  border:1px solid var(--border);
+  margin-bottom:0.75rem;
+  overflow:hidden;
+}
+
+.card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0.5rem 0.75rem;
+  background:var(--s1);
+  border-bottom:1px solid var(--border);
+}
+
+.card-top-label{
+  font-size:9px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.card-actions{display:flex;gap:0.4rem;align-items:center}
+
+.chip{
+  font-size:9px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  padding:0.2rem 0.5rem;
+  border:1px solid var(--border2);
+  color:var(--muted);
+}
+
+.copy-btn{
+  font-family:var(--mono);
+  font-size:9px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:0.25rem 0.6rem;
+  border:1px solid var(--border2);
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  transition:all 0.12s;
+}
+
+.copy-btn:hover{border-color:var(--a);color:var(--a)}
+.copy-btn.ok{border-color:#22c55e;color:#22c55e}
+
+.title-text{
+  padding:1.25rem 1rem;
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.5rem;
+  line-height:1.35;
+  color:var(--text);
+}
+
+/* META ROW */
+.meta-row{
+  display:flex;
+  gap:0.5rem;
+  margin-bottom:0.75rem;
+  flex-wrap:wrap;
+}
+
+.meta-pill{
+  font-size:9px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  padding:0.25rem 0.6rem;
+  border:1px solid var(--border2);
+  display:flex;
+  align-items:center;
+  gap:0.35rem;
+}
+
+.meta-pill .dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--a);
+  display:inline-block;
+}
+
+.meta-pill.arc .dot{background:var(--a3)}
+.meta-pill.env .dot{background:var(--a2)}
+
+/* SUBJECT BLOCK */
+.subject-block{
+  border:1px solid var(--border);
+  margin-bottom:0.75rem;
+  overflow:hidden;
+}
+
+.subject-inner{
+  padding:1rem;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0.75rem;
+}
+
+.subject-field{display:flex;flex-direction:column;gap:0.2rem}
+
+.sf-label{
+  font-size:9px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.sf-val{
+  font-size:12px;
+  color:var(--text);
+  line-height:1.5;
+}
+
+.anchor-note{
+  padding:0.6rem 1rem;
+  background:rgba(232,255,71,0.04);
+  border-top:1px solid var(--border);
+  font-size:10px;
+  color:var(--a);
+  letter-spacing:0.04em;
+}
+
+/* CUTS */
+.cuts-grid{
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+  margin-bottom:0.75rem;
+}
+
+.cut-card{
+  border:1px solid var(--border);
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color 0.12s;
+}
+
+.cut-card:hover{border-color:var(--border2)}
+.cut-card.open{border-color:var(--border2)}
+
+.cut-header{
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+  padding:0.65rem 0.75rem;
+  background:var(--s1);
+  user-select:none;
+}
+
+.cut-num{
+  font-family:var(--display);
+  font-size:1.1rem;
+  color:var(--muted2);
+  min-width:1.5rem;
+  line-height:1;
+}
+
+.cut-card.open .cut-num{color:var(--a)}
+
+.cut-name{
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  flex:1;
+}
+
+.cut-card.open .cut-name{color:var(--text)}
+
+.cut-timing{
+  font-size:9px;
+  letter-spacing:0.08em;
+  color:var(--muted2);
+}
+
+.cut-copy{
+  font-family:var(--mono);
+  font-size:9px;
+  padding:0.2rem 0.5rem;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  transition:all 0.12s;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  display:none;
+}
+
+.cut-card.open .cut-copy{display:block}
+.cut-copy:hover{border-color:var(--a);color:var(--a)}
+.cut-copy.ok{border-color:#22c55e;color:#22c55e}
+
+.cut-chevron{
+  font-size:10px;
+  color:var(--muted2);
+  transition:transform 0.2s;
+  margin-left:0.25rem;
+}
+
+.cut-card.open .cut-chevron{transform:rotate(180deg)}
+
+.cut-body{
+  display:none;
+  padding:0.85rem 1rem 1rem;
+  background:var(--s0);
+  border-top:1px solid var(--border);
+}
+
+.cut-card.open .cut-body{display:block}
+
+/* Cut sections inside body */
+.cut-section{margin-bottom:0.85rem}
+.cut-section:last-child{margin-bottom:0}
+
+.cs-label{
+  font-size:9px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:0.35rem;
+  display:flex;
+  align-items:center;
+  gap:0.4rem;
+}
+
+.cs-label::before{
+  content:'';
+  display:inline-block;
+  width:12px;height:1px;
+  background:var(--muted2);
+}
+
+.cs-text{
+  font-size:12px;
+  color:#c8c4bc;
+  line-height:1.85;
+}
+
+.cs-text strong{color:var(--a);font-weight:500}
+
+/* CONSTRAINTS */
+.constraints-block{
+  border:1px solid var(--border);
+  overflow:hidden;
+  margin-bottom:0.75rem;
+}
+
+.constraints-grid{
+  padding:0.85rem 1rem;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:0.75rem 1.5rem;
+}
+
+.cg-item{display:flex;flex-direction:column;gap:0.2rem}
+
+.cg-label{
+  font-size:9px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.cg-val{
+  font-size:11px;
+  color:var(--text);
+}
+
+/* FULL COPY */
+.full-copy-row{
+  display:flex;
+  gap:0.5rem;
+  margin-bottom:2rem;
+}
+
+.full-copy-btn{
+  flex:1;
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:0.75rem 1rem;
+  border:1px solid var(--border2);
+  background:transparent;
+  color:var(--text);
+  cursor:pointer;
+  transition:all 0.12s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.5rem;
+}
+
+.full-copy-btn:hover{border-color:var(--a);color:var(--a);background:rgba(232,255,71,0.04)}
+.full-copy-btn.ok{border-color:#22c55e;color:#22c55e}
+
+/* HISTORY */
+.history{margin-top:1rem}
+
+.history-header{
+  font-size:9px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--muted2);
+  margin-bottom:0.6rem;
+  display:flex;
+  align-items:center;
+  gap:0.6rem;
+}
+
+.history-header::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.history-list{display:flex;flex-direction:column;gap:0.35rem}
+
+.history-row{
+  display:flex;
+  align-items:center;
+  gap:0.75rem;
+  padding:0.5rem 0.75rem;
+  border:1px solid var(--border);
+  background:var(--s0);
+  cursor:pointer;
+  transition:border-color 0.12s;
+  font-size:11px;
+}
+
+.history-row:hover{border-color:var(--border2)}
+
+.hr-num{color:var(--muted2);font-size:9px;min-width:1.5rem}
+.hr-title{flex:1;color:var(--muted)}
+.hr-tag{font-size:9px;padding:0.15rem 0.4rem;border:1px solid var(--border2);color:var(--muted2);letter-spacing:0.06em;text-transform:uppercase}
+.hr-arc{font-size:9px;padding:0.15rem 0.4rem;background:rgba(71,200,255,0.08);border:1px solid rgba(71,200,255,0.2);color:var(--a3);letter-spacing:0.06em;text-transform:uppercase}
+
+/* SCORE */
+.score-bar{
+  display:flex;
+  gap:0.5rem;
+  margin-bottom:0.75rem;
+  align-items:center;
+}
+
+.score-label{
+  font-size:9px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  min-width:80px;
+}
+
+.score-track{
+  flex:1;
+  height:3px;
+  background:var(--border);
+  border-radius:0;
+  overflow:hidden;
+}
+
+.score-fill{
+  height:100%;
+  background:var(--a);
+  transition:width 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+
+.score-val{
+  font-size:10px;
+  color:var(--a);
+  min-width:30px;
+  text-align:right;
+}
+
+@media(max-width:600px){
+  .controls{grid-template-columns:1fr}
+  .subject-inner{grid-template-columns:1fr}
+  .constraints-grid{grid-template-columns:1fr 1fr}
+  .stats-bar{flex-wrap:wrap}
+  .stat{min-width:45%}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-top">
+    <span class="version-badge">v2.0 — Optimised</span>
+    <div class="compat-badges">
+      <span class="compat-badge">Sora</span>
+      <span class="compat-badge">Kling</span>
+      <span class="compat-badge">Runway</span>
+      <span class="compat-badge">Luma</span>
+    </div>
+  </div>
+  <h1>RESCUE<br/><em>PROMPT</em><br/>ENGINE</h1>
+  <p class="tagline">AI-optimised · Hook-environment matched · Model vocabulary</p>
+</header>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-val" id="sCount">0</div><div class="stat-key">Generated</div></div>
+  <div class="stat"><div class="stat-val" id="sHook">—</div><div class="stat-key">Hook Score</div></div>
+  <div class="stat"><div class="stat-val" id="sRet">—</div><div class="stat-key">Retention</div></div>
+  <div class="stat"><div class="stat-val" id="sRel">—</div><div class="stat-key">AI Reliability</div></div>
+  <div class="stat"><div class="stat-val" id="sCombo">84k+</div><div class="stat-key">Combinations</div></div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="arc-selector">
+    <div class="arc-label">Emotional Arc Template</div>
+    <div class="arc-options">
+      <button class="arc-btn active" data-arc="auto" onclick="selectArc(this)">Auto</button>
+      <button class="arc-btn" data-arc="fast" onclick="selectArc(this)">Fast Tension</button>
+      <button class="arc-btn" data-arc="slow" onclick="selectArc(this)">Slow Burn</button>
+      <button class="arc-btn" data-arc="double" onclick="selectArc(this)">Double Peak</button>
+    </div>
+  </div>
+  <button class="gen-btn" id="genBtn" onclick="generate()">
+    <span class="gen-icon" id="genIcon">⚡</span>
+    <span id="genTxt">GENERATE</span>
+  </button>
+</div>
+
+<!-- OUTPUT -->
+<div class="output" id="output">
+
+  <!-- TITLE -->
+  <div class="title-card">
+    <div class="card-top">
+      <span class="card-top-label">Viral Title</span>
+      <div class="card-actions">
+        <button class="copy-btn" id="copyTitleBtn" onclick="cp('title')">Copy</button>
+      </div>
+    </div>
+    <div class="title-text" id="titleDisplay"></div>
+  </div>
+
+  <!-- META -->
+  <div class="meta-row" id="metaRow"></div>
+
+  <!-- SCORES -->
+  <div style="border:1px solid var(--border);padding:0.85rem 1rem;margin-bottom:0.75rem;background:var(--s0)">
+    <div style="font-size:9px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem">Optimisation Scores</div>
+    <div class="score-bar"><div class="score-label">Hook Strength</div><div class="score-track"><div class="score-fill" id="sc1" style="width:0%"></div></div><div class="score-val" id="sv1"></div></div>
+    <div class="score-bar"><div class="score-label">Retention Arc</div><div class="score-track"><div class="score-fill" id="sc2" style="width:0%"></div></div><div class="score-val" id="sv2"></div></div>
+    <div class="score-bar"><div class="score-label">AI Reliability</div><div class="score-track"><div class="score-fill" id="sc3" style="width:0%"></div></div><div class="score-val" id="sv3"></div></div>
+    <div class="score-bar"><div class="score-label">Env Coherence</div><div class="score-track"><div class="score-fill" id="sc4" style="width:0%"></div></div><div class="score-val" id="sv4"></div></div>
+  </div>
+
+  <!-- SUBJECT -->
+  <div class="subject-block">
+    <div class="card-top">
+      <span class="card-top-label">🐾 Subject Anchor — Fixed Identity Across All Cuts</span>
+      <button class="copy-btn" onclick="cp('subject')">Copy</button>
+    </div>
+    <div class="subject-inner" id="subjectGrid"></div>
+    <div class="anchor-note" id="anchorNote"></div>
+  </div>
+
+  <!-- CUTS -->
+  <div class="cuts-grid" id="cutsGrid"></div>
+
+  <!-- CONSTRAINTS -->
+  <div class="constraints-block">
+    <div class="card-top">
+      <span class="card-top-label">⚙ Technical Constraints</span>
+    </div>
+    <div class="constraints-grid">
+      <div class="cg-item"><div class="cg-label">Format</div><div class="cg-val">Vertical 9:16</div></div>
+      <div class="cg-item"><div class="cg-label">Duration</div><div class="cg-val">15 seconds</div></div>
+      <div class="cg-item"><div class="cg-label">Style</div><div class="cg-val">Ultra-photorealistic</div></div>
+      <div class="cg-item"><div class="cg-label">Camera</div><div class="cg-val">First-person POV smartphone</div></div>
+      <div class="cg-item"><div class="cg-label">Audio</div><div class="cg-val">Natural ambient only</div></div>
+      <div class="cg-item"><div class="cg-label">Lighting</div><div class="cg-val">Natural, no cinematic rigs</div></div>
+      <div class="cg-item"><div class="cg-label">Music</div><div class="cg-val">None</div></div>
+      <div class="cg-item"><div class="cg-label">Narration</div><div class="cg-val">None</div></div>
+      <div class="cg-item"><div class="cg-label">Text/Subtitles</div><div class="cg-val">None</div></div>
+      <div class="cg-item"><div class="cg-label">Human faces</div><div class="cg-val">Never visible</div></div>
+      <div class="cg-item"><div class="cg-label">Physics</div><div class="cg-val">Fully plausible, no clipping</div></div>
+      <div class="cg-item"><div class="cg-label">Micro-motion</div><div class="cg-val">Mandatory every cut</div></div>
+    </div>
+  </div>
+
+  <!-- FULL COPY -->
+  <div class="full-copy-row">
+    <button class="full-copy-btn" id="fullCopyBtn" onclick="cp('full')">⬇ Copy Full Prompt for AI Generator</button>
+  </div>
+
+</div><!-- /output -->
+
+<!-- HISTORY -->
+<div class="history" id="historySection" style="display:none">
+  <div class="history-header">Session History</div>
+  <div class="history-list" id="historyList"></div>
+</div>
+
+</div><!-- /wrap -->
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// DATA — ENVIRONMENT-TAGGED POOLS
+// ═══════════════════════════════════════════════════════════════════
+
+const ENVIRONMENTS = [
+  {
+    id:'urban-road',
+    type:'urban',
+    label:'City Road',
+    setting:'a busy 2-lane urban road with painted white lane markings, wet asphalt reflecting traffic signals, cracked sidewalk visible at left edge',
+    light:'overcast midday diffused light, 5500K colour temperature, flat ambient with no harsh shadows',
+    sound:'passing car tyre hiss on wet asphalt, distant horn, wind between buildings, faint siren far away',
+    compatible:['road-crossing','limping-near-road','dog-chase','cardboard-road','injured-on-ground']
+  },
+  {
+    id:'urban-alley',
+    type:'urban',
+    label:'Back Alley',
+    setting:'a narrow urban alley between two brick buildings, wet cobblestones, overflowing refuse bins, peeling paint walls, a single sodium streetlamp casting warm orange overhead',
+    light:'evening warm sodium-vapour light, 2700K, strong top-down orange cast, deep shadows on the ground',
+    sound:'distant traffic, dripping water from a pipe, cat yowl echoing, wind channelled through the alley',
+    compatible:['cornered-by-dog','trapped-in-netting','container-sounds','limping-near-road','injured-on-ground']
+  },
+  {
+    id:'storm-drain',
+    type:'urban',
+    label:'Storm Drain',
+    setting:'a concrete storm drain grate set into the edge of a wet pavement, rushing water audible below, puddles reflecting a grey sky',
+    light:'overcast grey sky, 6000K flat diffused, puddle reflections provide secondary fill light',
+    sound:'water rushing below grate, rain, street noise muffled, echoic sound through the drain',
+    compatible:['trapped-in-drain','half-submerged','container-sounds','injured-on-ground']
+  },
+  {
+    id:'forest-creek',
+    type:'forest',
+    label:'Forest Creek',
+    setting:'a shallow muddy creek bank in a forest clearing, exposed tree roots, moss-covered rocks, dappled light through deciduous canopy, soft mud at water edge',
+    light:'dappled golden-hour natural light, 4200K shifting, moving leaf shadows on subject',
+    sound:'flowing water over stones, birdsong, wind through leaves, footsteps on soft earth',
+    compatible:['half-submerged','trapped-in-netting','injured-on-ground','limping-near-road']
+  },
+  {
+    id:'forest-trail',
+    type:'forest',
+    label:'Forest Trail',
+    setting:'a dirt hiking trail through dense pine forest, needle carpet underfoot, thick undergrowth at edges, low morning mist between trees',
+    light:'low morning side-light, 4800K warm, god rays through mist, strong directional shadows',
+    sound:'footsteps on pine needles, distant woodpecker, wind through high canopy, silence between gusts',
+    compatible:['injured-on-ground','cornered-by-dog','limping-near-road','container-sounds']
+  },
+  {
+    id:'snow-roadside',
+    type:'snow',
+    label:'Snowy Roadside',
+    setting:'a highway roadside snowbank, grey-white compressed snow, tyre tracks in the road, sparse dead grass poking through at the shoulder, overcast white sky',
+    light:'flat white diffused winter overcast, 7000K cool, no shadows, high-key flat exposure',
+    sound:'wind, muffled traffic, snow compression underfoot, distant truck rumble',
+    compatible:['road-crossing','limping-near-road','injured-on-ground','half-submerged']
+  },
+  {
+    id:'snow-field',
+    type:'snow',
+    label:'Frozen Field',
+    setting:'an open frozen field, wind-scoured snow surface with ice patches, grey horizon, leafless tree line far background, no tracks visible',
+    light:'flat overcast white, 7500K very cool, slight blue tint in shadows, no directional light',
+    sound:'sustained wind, ice creaking, complete silence beneath the wind',
+    compatible:['injured-on-ground','road-crossing','half-submerged']
+  },
+  {
+    id:'engine-bay',
+    type:'vehicle',
+    label:'Car Engine Bay',
+    setting:'the open engine compartment of a parked car in an empty parking structure, concrete pillars behind, fluorescent overhead, oil-stained engine components visible',
+    light:'mixed fluorescent overhead and diffused parking structure ambient, 4100K, flat with slight green cast',
+    sound:'parking structure echo, distant engine start, dripping oil, ticking cooling metal',
+    compatible:['container-sounds','engine-bay-find']
+  },
+  {
+    id:'highway-box',
+    type:'vehicle',
+    label:'Highway Shoulder',
+    setting:'the shoulder of a motorway, barrier rail behind, tarmac with white chevron markings, a closed cardboard box or plastic container on the gravel verge, heavy truck traffic visible blurred in background',
+    light:'harsh midday direct sun, 5800K, strong top shadows, slight heat haze on tarmac',
+    sound:'motorway roar, wind rush from passing lorries, gravel underfoot',
+    compatible:['cardboard-road','container-sounds','road-crossing']
+  },
+  {
+    id:'beach-rocks',
+    type:'ocean',
+    label:'Rocky Beach',
+    setting:'a rocky beach at low tide, tide pools between large dark basalt boulders, kelp and seaweed on stones, sea visible behind, white foam on rocks',
+    light:'overcast coastal light, 5800K flat, diffused by sea mist, bright on water surface',
+    sound:'waves breaking, seagulls, water draining through rocks, wind, distant boat horn',
+    compatible:['half-submerged','trapped-in-netting','injured-on-ground']
+  },
+  {
+    id:'flooded-basement',
+    type:'urban',
+    label:'Flooded Basement',
+    setting:'the top of a flooded concrete stairwell descending into dark water, broken window letting in grey light, peeling plaster walls, water rising to 3rd step',
+    light:'single shaft of grey light from broken window, 5000K, rest in near-darkness, high contrast',
+    sound:'dripping water, echo, wind through broken glass, muffled distant traffic above',
+    compatible:['half-submerged','trapped-in-drain','injured-on-ground']
+  }
+];
+
+// Hook types tagged to compatible environments
+const HOOKS = [
+  {
+    id:'road-crossing',
+    label:'Road Crossing',
+    hookStrength:97,
+    text:(a,e)=>`The ${a.species} is spotted in the centre of ${e.setting}, directly in the path of approaching traffic. Camera catches the animal in the headlights/daylight — disoriented, turning in circles on the road surface. Push-zoom hard toward subject. Sound: ${e.sound}. The animal's ${a.eyeDesc} are wide, pupils dilated. The viewer's first instinct is immediate dread.`
+  },
+  {
+    id:'cardboard-road',
+    label:'Box on Roadside',
+    hookStrength:94,
+    text:(a,e)=>`A sealed brown cardboard box sits on the verge of ${e.setting}. The box is visibly moving — small rhythmic lurches from inside. Muffled crying sounds audible. Camera approaches fast from standing height, slight motion blur, push-zoom to box. Sound: ${e.sound} plus faint mewling from inside. Viewer hears the animal before seeing it.`
+  },
+  {
+    id:'dog-chase',
+    label:'Dog Chasing',
+    hookStrength:96,
+    text:(a,e)=>`A medium-large domestic dog (brown, short-haired, on no leash) is heard barking off-frame before being seen. The camera pans fast left to reveal the ${a.species} sprinting in ${e.setting}, the dog in pursuit 2 metres behind. Push-zoom catches the ${a.species}'s face — terrified, mouth open. Sound: ${e.sound}, dog barking, paws on ground. The predator-prey tension creates immediate adrenaline.`
+  },
+  {
+    id:'cornered-by-dog',
+    label:'Cornered by Dog',
+    hookStrength:93,
+    text:(a,e)=>`Camera rounds a corner in ${e.setting} to find a medium dog standing rigid, growling, facing a wall. The ${a.species} is already cornered against the wall — ${a.emotState} — pressed flat, trying to disappear into the surface. Push-zoom past the dog's shoulder to the animal. Sound: low growl, ${e.sound}. The viewer sees the victim before they understand the threat, then the dog enters frame.`
+  },
+  {
+    id:'half-submerged',
+    label:'Half Submerged',
+    hookStrength:95,
+    text:(a,e)=>`Camera approaches ${e.setting}. A small shape is visible in the water — the ${a.species}, half-submerged, ${a.furDesc} fur plastered flat and waterlogged. The animal is weakly paddling but losing strength. Push-zoom. Sound: ${e.sound}, faint whimpering. The viewer sees the animal fighting to stay afloat with diminishing energy.`
+  },
+  {
+    id:'container-sounds',
+    label:'Sounds from Container',
+    hookStrength:91,
+    text:(a,e)=>`Camera is close to a discarded container, plastic bag, or box at ${e.setting}. Scratching sounds and faint crying are audible. The container moves slightly. Camera tilts down to it, push-zoom. Sound: ${e.sound}, muffled cries amplified by the container. The mystery of what's inside creates powerful curiosity gap before the reveal.`
+  },
+  {
+    id:'injured-on-ground',
+    label:'Injured on Ground',
+    hookStrength:88,
+    text:(a,e)=>`Camera sweeps ${e.setting} and then drops suddenly — the ${a.species} is lying on the ground, one leg extended unnaturally, head up but clearly unable to rise. ${a.emotState}. Hard push-zoom to the face. Sound: ${e.sound}, quiet laboured breathing. The vulnerability of the prostrate animal triggers immediate protective instinct.`
+  },
+  {
+    id:'limping-near-road',
+    label:'Limping Near Road',
+    hookStrength:89,
+    text:(a,e)=>`The ${a.species} is seen limping slowly along the edge of ${e.setting}, holding one forepaw off the surface, moving in a confused direction toward traffic. Camera follows at distance then push-zooms. Sound: ${e.sound}. The slow inevitable movement toward danger while the animal is unaware creates sustained tension.`
+  },
+  {
+    id:'engine-bay-find',
+    label:'Found in Engine Bay',
+    hookStrength:90,
+    text:(a,e)=>`The camera approaches an open car hood in ${e.setting}. A faint mewing is heard. Camera tilts down into the engine bay — the ${a.species} is huddled between the engine block and firewall, ${a.emotState}, ${a.furDesc} fur catching oil residue. Push-zoom to the face between engine components. Sound: ${e.sound}, engine ticking, faint cry.`
+  },
+  {
+    id:'trapped-in-netting',
+    label:'Trapped in Netting',
+    hookStrength:92,
+    text:(a,e)=>`Camera discovers the ${a.species} entangled in loose plastic netting or wire fencing at ${e.setting}. The animal is alive and struggling — small desperate movements making the entanglement worse. Push-zoom to where netting cuts into fur. Sound: ${e.sound}, plastic scrape, distressed cry. The trapped animal unable to free itself creates immediate urgency.`
+  },
+  {
+    id:'trapped-in-drain',
+    label:'Trapped in Drain',
+    hookStrength:92,
+    text:(a,e)=>`Camera is aimed at a storm drain opening at ${e.setting}. A small paw is visible through the grate — then the ${a.species}'s face appears below the bars, looking up. Sound: ${e.sound}, echoic mewing from below. The bars between viewer and animal create visual barrier tension. Push-zoom to the face through the grate.`
+  }
+];
+
+// Matched hooks per environment ID
+const ENV_HOOK_MAP = {};
+ENVIRONMENTS.forEach(e=>{
+  ENV_HOOK_MAP[e.id] = HOOKS.filter(h=>e.compatible.includes(h.id));
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// ANIMALS — AI MODEL VOCABULARY
+// ═══════════════════════════════════════════════════════════════════
+
+const ANIMALS = [
+  {
+    species:'domestic kitten',
+    ageDesc:'5–6 weeks old',
+    colorDesc:'orange tabby with thin black mackerel stripe markings',
+    furDesc:'short sparse kitten fur, belly fur damp and clumped, dorsal fur still dry and puffed',
+    sizeDesc:'fits entirely in one cupped adult hand, weight approximately 280 grams',
+    eyeDesc:'pale blue-grey irises, pupils wide black ovals, sclera white, surrounded by sparse whisker-thin eyelashes',
+    markingDesc:'small V-shaped nick on upper edge of right ear, four pink translucent paw pads visible when lifted',
+    emotState:'full-body trembling at 3Hz frequency, slow deliberate blinking every 2 seconds, mouth opening in silent mew',
+    microMove:'right ear rotating independently tracking sound, tail tip curling and uncurling, occasional full-body shiver',
+    aiAnchor:'ANCHOR: orange tabby kitten, V-nick right ear, blue-grey eyes, palm-sized — identical across all cuts'
+  },
+  {
+    species:'puppy',
+    ageDesc:'8–10 weeks old',
+    colorDesc:'black and white border collie mix, black saddle marking over back, white chest blaze and muzzle',
+    furDesc:'medium-length puppy coat, wet and clumped in dark spikes on the legs and belly, dry on the top of the head',
+    sizeDesc:'length approximately 28cm, fits tucked under one arm',
+    eyeDesc:'dark brown irises, rounded, glossy, light reflecting as a small white catch-light top-right',
+    markingDesc:'white blaze runs from forehead to nose bridge, left ear folded inward at the tip, right ear upright',
+    emotState:'low whimpering audible at 1-second intervals, tail tucked between hind legs, hind legs splayed for stability',
+    microMove:'nose twitching rapidly, tail making tiny involuntary half-wags then retucking, paws repositioning',
+    aiAnchor:'ANCHOR: B&W border collie puppy, folded left ear, white blaze nose-to-forehead, brown eyes — identical across all cuts'
+  },
+  {
+    species:'adult stray cat',
+    ageDesc:'approximately 2 years old',
+    colorDesc:'grey and white tuxedo pattern, grey covering full back and head, white from chin to belly',
+    furDesc:'dry but matted in patches, fur parted and static near the right flank revealing pink skin, tail fur sparse at base',
+    sizeDesc:'medium domestic cat frame, visibly underweight — scapulae and spine raised under coat',
+    eyeDesc:'amber-yellow irises, vertical slit pupils fully dilated to near-circles, slight discharge at inner corner of left eye',
+    markingDesc:'diagonal scar 2cm long across nose bridge, white tail tip, right canine tooth slightly longer than left visible when mouth opens',
+    emotState:'ears fully flattened lateral and low, body pressing toward ground, intermittent hiss with no vocalisation',
+    microMove:'tail lashing in slow single sweeps left-right, chin lowering between shoulder blades, occasional rapid nose-lick',
+    aiAnchor:'ANCHOR: grey-white tuxedo adult cat, nose scar, amber eyes, white tail-tip — identical across all cuts'
+  },
+  {
+    species:'newborn kitten',
+    ageDesc:'3–4 weeks old',
+    colorDesc:'cream base coat with faint ghost tabby stripe on the forehead only',
+    furDesc:'very sparse short neonatal fur, skin visible through coat on belly, fur direction inconsistent and ungroomed',
+    sizeDesc:'palm-sized, approximately 120 grams, head proportionally oversized',
+    eyeDesc:'eyes 60% open, milky pale blue, unfocused — cannot track movement',
+    markingDesc:'bright pink nose with visible fine vein structure, ears still folded flat against skull, all four paws pink with micro-wrinkles',
+    emotState:'paddling motion with front paws against air, mouth opening wide in continuous high-pitched cry, head moving side to side seeking warmth',
+    microMove:'rooting reflex — head swinging slow arcs seeking contact, tiny paws kneading rhythmically, ribcage visibly expanding on each cry',
+    aiAnchor:'ANCHOR: cream neonatal kitten, ghost stripe forehead, milky blue eyes, ears flat — identical across all cuts'
+  },
+  {
+    species:'golden retriever puppy',
+    ageDesc:'6–7 weeks old',
+    colorDesc:'pale honey-gold, slightly darker dorsal stripe',
+    furDesc:'thick fluffy double-layer puppy coat, all four paws coated in dried grey mud to the ankle, muzzle tip mud-stained',
+    sizeDesc:'slightly larger than two adult fists, approximately 1.2 kg',
+    eyeDesc:'dark amber irises, round, prominent; light refracts as visible lens glint, lower eyelid slightly red from crying',
+    markingDesc:'floppy ears with slightly darker copper-brown fringe, oversized forepaws disproportionate to body, pale peach belly',
+    emotState:'shivering in slow full-body oscillations, head low, making sustained quiet whine at even pitch',
+    microMove:'paws making small padding motions on surface, ears swinging gently with each head movement, jaw vibrating slightly with shiver',
+    aiAnchor:'ANCHOR: honey-gold retriever puppy, mud-paws, dark ear fringe, amber eyes — identical across all cuts'
+  },
+  {
+    species:'stray dog',
+    ageDesc:'young adult approximately 1 year',
+    colorDesc:'brindle — dark brown base with irregular tan vertical stripe pattern, pale tan muzzle and eyebrow spots',
+    furDesc:'short dense wet coat pressed flat to body, highlighting visible rib outline and hip bones, muddy lower legs',
+    sizeDesc:'medium build, approximately 14kg, chest narrower than expected for frame',
+    eyeDesc:'hazel green-brown irises, almond shaped, white visible at outer corners when eyes dart sideways',
+    markingDesc:'notch missing from upper right ear (healed old injury), one hind leg held 3cm off ground when standing still',
+    emotState:'low posture — back hunched, tail half-raised then dropping to neutral in a 3-second cycle, eyes scanning rapidly side to side',
+    microMove:'nostrils flaring visibly on each breath, weight shifting between front paws, tail completing slow single-sweep wag attempts',
+    aiAnchor:'ANCHOR: brindle adult dog, notched right ear, hazel eyes, raised hind leg — identical across all cuts'
+  },
+  {
+    species:'Persian-mix kitten',
+    ageDesc:'7–8 weeks old',
+    colorDesc:'white base with slate-grey patches on top of skull and base of tail only',
+    furDesc:'long semi-Persian coat severely matted at neck forming a collar-like tangle, face fur clean and intact, belly fur flat with moisture',
+    sizeDesc:'very small, approximately 320 grams, head appears large due to facial fur',
+    eyeDesc:'pale jade-green irises, round and large relative to face, half-closed from exhaustion with slow blink rate',
+    markingDesc:'brachycephalic flat face structure — nose between eyes, small pink mouth visible when weak mew occurs, tear-staining under both eyes',
+    emotState:'lethargic — minimal voluntary movement, slow shallow breathing visible in ribcage, producing weak mew every 8–12 seconds',
+    microMove:'eyelids drooping further then pulling back, slow partial head-raise then lowering, one paw extending then retracting',
+    aiAnchor:'ANCHOR: white-grey Persian kitten, matted neck, jade eyes, flat face, tear-stained — identical across all cuts'
+  },
+  {
+    species:'Dalmatian puppy',
+    ageDesc:'9–10 weeks old',
+    colorDesc:'white base coat with black spots of varied diameter (1–4cm), cluster of 4 spots on right ear, single large spot encircling left eye',
+    furDesc:'short smooth wet coat, spots appearing darker at edges when wet, white areas slightly greyish from dirt',
+    sizeDesc:'medium-small, approximately 3.5kg, legs already long and slightly uncoordinated',
+    eyeDesc:'dark blue-grey irises (puppy colour not yet changed), rounded, surrounded by the black eye-spot marking on left side',
+    markingDesc:'spot cluster on right ear, eye-patch spot left side, pink paw pads with small black pigment spots visible',
+    emotState:'confusion evident — head rotating 30 degrees left then right repeatedly, low continuous whine, standing with wide leg stance for balance',
+    microMove:'ears pricking forward then drooping alternately, tail making incomplete wagging arcs, stumbling half-step readjustments',
+    aiAnchor:'ANCHOR: Dalmatian puppy, left eye-patch spot, right ear spot cluster, blue-grey eyes — identical across all cuts'
+  }
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// CARE ACTIONS — visually dramatic transformations
+// ═══════════════════════════════════════════════════════════════════
+
+const CARE = [
+  {
+    label:'Warm Water Rinse',
+    text:(a)=>`Interior car or sheltered space. Gloved hands hold the ${a.species} over a shallow plastic basin. Warm water from a poured bottle runs over the ${a.furDesc} coat — mud visibly releasing and swirling brown in the water below. The ${a.colorDesc} colouring slowly emerges as fur cleans. The animal's tension reduces in real-time — muscle groups releasing one region at a time. Sound: water flow, quiet animal breathing becoming slower and deeper.`
+  },
+  {
+    label:'Towel Wrap',
+    text:(a)=>`Inside a vehicle. A thick beige terrycloth towel is wrapped around the ${a.species} — first the body, then each paw individually patted and dried. The ${a.furDesc} fur begins to separate and fluff as moisture is absorbed. The animal's ${a.emotState} reduces visibly — shivering frequency halves within 20 seconds. Sound: soft cloth movement, heater fan, faint engine.`
+  },
+  {
+    label:'Bottle Feeding',
+    text:(a)=>`The ${a.species} is cradled face-up in one hand, the other brings a small animal formula bottle or syringe. First attempt meets closed mouth — patient repositioning. Second attempt: the animal latches or accepts drops. Rhythmic suckling or swallowing movement visible at the throat. Paws begin slow kneading motion against the hand. Sound: quiet suckling, cloth movement, warm interior.`
+  },
+  {
+    label:'Hairdryer Low Heat',
+    text:(a)=>`Seated on a folded towel, the ${a.species} is held gently while a handheld dryer on low-warm setting is passed 20cm from the coat. The ${a.furDesc} fur lifts and begins to separate, the ${a.colorDesc} colour becoming vivid and clean as it dries. The animal turns its head toward the warmth. Micro-movements change from trembling to slow comfortable stretching. Sound: dryer hum, cloth rustle.`
+  },
+  {
+    label:'Warm Hand Incubation',
+    text:(a)=>`Both cupped hands enclose the ${a.species} completely in a warm cavity. Only the ${a.eyeDesc} eyes are visible between thumbs. Body temperature transfer is gradual — the animal's shivering visible through the hands. Over 10 seconds the trembling reduces. The animal's head turns and presses into the palm. Sound: breathing, quiet interior, faint traffic outside.`
+  },
+  {
+    label:'Warm Box Setup',
+    text:(a)=>`A cardboard box is lined with a fleece blanket. Hands gently lower the ${a.species} into the box. The animal initially tries to climb out — paws on box edge — then turns in a circle and begins to settle. The ${a.furDesc} fur slowly dries in the confined warmth. Blanket is folded over partially. Sound: cloth movement, quiet animal exhale, box handling sounds.`
+  },
+  {
+    label:'Warm Cloth Wipe',
+    text:(a)=>`A warm wet cloth is slowly drawn across the ${a.species}'s body — starting at the back, working toward legs and face last. Mud and debris release in visible dark streaks on the cloth. The ${a.colorDesc} fur tone becomes cleaner and more vivid with each pass. The animal gradually stops flinching and allows the contact. Sound: wet cloth sound, quiet breathing, faint drip.`
+  },
+  {
+    label:'Vet Light Examination',
+    text:(a)=>`Under controlled interior light, gloved hands part the ${a.furDesc} fur section by section using a small penlight. The ${a.colorDesc} coat examined systematically. The animal is still — held gently but allowing contact now. No major injuries visible — a visible moment of relief in the care-giver's hands relaxing their grip. Sound: quiet clinical space, breathing, latex glove touch on fur.`
+  }
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// PAYOFFS — emotionally calibrated endings
+// ═══════════════════════════════════════════════════════════════════
+
+const PAYOFFS = [
+  {
+    label:'Slow Blink Direct',
+    text:(a)=>`ECU (extreme close-up) — the ${a.species}'s face fills the vertical frame. The ${a.eyeDesc} eyes are calm, pupils narrowed to comfortable slits. The animal produces one slow deliberate blink directed toward camera — a universal trust signal. ${a.microMove}. Camera holds completely still for 2 seconds then pushes in 15% in the final second. Sound: near-silence, distant warmth, single quiet exhale.`
+  },
+  {
+    label:'Safe Beside Companion',
+    text:(a)=>`The ${a.species} is placed beside one (or two) other small rescued animals of similar species on a fleece blanket. The animals investigate each other — nose-to-nose contact. The rescued animal's ${a.emotState} has completely resolved. They press their bodies together for warmth. Camera pulls back slowly to show the group, then holds. Sound: faint purring or soft breathing, cloth movement, silence.`
+  },
+  {
+    label:'Deep Sleep',
+    text:(a)=>`The ${a.species} is curled into a tight circle on a soft surface, ${a.colorDesc} fur rising and falling in slow respiratory rhythm — one complete breath cycle every 3 seconds. The ${a.eyeDesc} eyes are fully closed, REM visible as slight twitches beneath the eyelids. Camera very slowly push-zooms to the face from MCU to CU over 3 seconds. Sound: complete silence except breathing.`
+  },
+  {
+    label:'First Tentative Steps',
+    text:(a)=>`The ${a.species} stands on a clean surface, takes one careful step, then another — each paw placed with concentration. The body posture has fully normalised. The ${a.furDesc} fur is dry and clean. The animal sniffs the surface, then looks up toward camera. Camera holds at mid-shot, no movement except slight breathing shake. Sound: soft paw steps, quiet interior.`
+  },
+  {
+    label:'Play Behaviour',
+    text:(a)=>`The ${a.species} bats at a moving finger or small object with one paw — a ${a.colorDesc} paw appearing from below frame. The ${a.eyeDesc} eyes track movement with alert curiosity rather than fear. The body is low but engaged — muscles tensed for play not survival. Camera pulls back from CU to MCU to show the full animal active and well. Sound: soft pat sounds, quiet breathing, occasional tiny vocalisation.`
+  },
+  {
+    label:'Feeding Calmly',
+    text:(a)=>`The ${a.species} is eating or drinking from a small bowl — head down, tail slowly rising to vertical as confidence builds. The ${a.furDesc} fur is clean and beginning to fluff naturally. Swallowing movement visible at throat. Camera starts at MCU and holds — no movement — letting the calm normality speak. Sound: quiet lapping or crunching, bowl movement, complete background silence.`
+  },
+  {
+    label:'Hand Nuzzle',
+    text:(a)=>`A hand rests open on a surface. The ${a.species} walks toward it slowly, investigates with nose, then presses its head sideways into the palm — a trust display. The ${a.colorDesc} fur presses against the hand. Camera at CU, slight push-in at moment of contact. ${a.microMove}. Sound: cloth, near-silence, single quiet purr or exhale.`
+  }
+];
+
+// ═══════════════════════════════════════════════════════════════════
+// ARC TEMPLATES — varied emotional pacing
+// ═══════════════════════════════════════════════════════════════════
+
+const ARCS = {
+  fast:{
+    label:'Fast Tension',
+    desc:'Maximum shock hook, rapid problem reveal, quick rescue — tension resolves fast into long payoff',
+    hookEmphasis:'CRITICAL: first 0.5 seconds must contain movement or sound that stops scrolling. No build-up — start at the peak of the danger.',
+    cut2Pace:'Rapid — 1 second establishing, immediately into the problem detail. No slow reveal.',
+    cut3Pace:'Quick, decisive rescue. No hesitation shown in the hands. Animal secured within the cut.',
+    cut4Pace:'Fast transformation — visible change in under 3 seconds of the cut.',
+    cut5Pace:'Long, slow payoff — 4 full seconds of calm to reward the watch-time.',
+    retentionScore:91
+  },
+  slow:{
+    label:'Slow Burn',
+    desc:'Quiet unsettling discovery, extended problem build, emotionally earned rescue — peak hits at cut 3',
+    hookEmphasis:'Begin with an ambient scene that seems normal — then one detail is wrong. The hook is the wrongness of a detail, not a shock.',
+    cut2Pace:'Slow — camera lingers on the animal\'s face, details build dread gradually. Let micro-movements carry emotion.',
+    cut3Pace:'Tentative — hands enter frame slowly, animal startles, hands withdraw, retry. Earned contact.',
+    cut4Pace:'Methodical — each care step shown in full. Transformation is gradual and deliberate.',
+    cut5Pace:'Quiet sustained hold — animal and camera both still, holding the moment.',
+    retentionScore:88
+  },
+  double:{
+    label:'Double Peak',
+    desc:'Strong hook, false resolution at cut 3, second danger/complication at cut 4 opening, true payoff at cut 5',
+    hookEmphasis:'Strong initial hook — animal appears saved at cut 3 — then cut 4 opens with a second problem (too cold, won\'t eat, second injury found) before true resolution.',
+    cut2Pace:'Standard reveal — full problem understood by end of cut.',
+    cut3Pace:'Apparent rescue complete — viewer thinks it\'s resolved. Camera starts to pull back.',
+    cut4Pace:'SECOND TENSION: New complication discovered at the START of cut 4 (animal too cold, lethargic, bleeding found). Then care resolves it.',
+    cut5Pace:'True payoff — emotionally heavier because earned through two tension peaks.',
+    retentionScore:95
+  }
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// TITLE SYSTEM
+// ═══════════════════════════════════════════════════════════════════
+
+const TITLE_TEMPLATES = [
+  (a,e,h)=>`We heard something in the ${e.label.toLowerCase()}… ${pickE(['😢','💔','🙏'])}`,
+  (a,e,h)=>`Found ${indefinite(a.species)} ${h.label.toLowerCase()} — couldn't leave it there ${pickE(['🫶','❤️','😭'])}`,
+  (a,e,h)=>`What was moving inside made us stop the car ${pickE(['😱','😢','🙏'])}`,
+  (a,e,h)=>`Tiny ${a.species} ${h.label.toLowerCase()} — look at it now ${pickE(['😭','🐾','✨'])}`,
+  (a,e,h)=>`We almost drove past. So glad we didn't ${pickE(['💔','🙏','🫶'])}`,
+  (a,e,h)=>`${e.label} rescue — this ${a.species} changed our day ${pickE(['❤️','🐾','😢'])}`,
+  (a,e,h)=>`Nobody was stopping. So we did ${pickE(['🙏','😭','🫶'])}`,
+  (a,e,h)=>`Found abandoned ${a.species} in the ${e.label.toLowerCase()} ${pickE(['💔','😢','❤️'])}`
+];
+
+function indefinite(noun){return /^[aeiou]/i.test(noun)?'an '+noun:'a '+noun}
+function pickE(arr){return arr[Math.floor(Math.random()*arr.length)]}
+
+// ═══════════════════════════════════════════════════════════════════
+// CORE
+// ═══════════════════════════════════════════════════════════════════
+
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
+
+let selectedArc='auto';
+let count=0;
+let session=[];
+let currentFull='';
+let currentTitle='';
+let currentSubject='';
+
+function selectArc(btn){
+  document.querySelectorAll('.arc-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedArc=btn.dataset.arc;
+}
+
+function generate(){
+  const btn=document.getElementById('genBtn');
+  btn.classList.add('loading');
+  document.getElementById('genIcon').textContent='⟳';
+  document.getElementById('genTxt').textContent='BUILDING...';
+
+  setTimeout(()=>{
+    // Pick environment
+    const env=pick(ENVIRONMENTS);
+
+    // Pick matched hook
+    const compatHooks=ENV_HOOK_MAP[env.id];
+    const hook=pick(compatHooks);
+
+    // Pick animal
+    const animal=pick(ANIMALS);
+
+    // Pick care + payoff
+    const care=pick(CARE);
+    const payoff=pick(PAYOFFS);
+
+    // Arc
+    let arcKey=selectedArc;
+    if(arcKey==='auto') arcKey=pick(['fast','slow','double']);
+    const arc=ARCS[arcKey];
+
+    // Title
+    const titleFn=pick(TITLE_TEMPLATES);
+    const title=titleFn(animal,env,hook);
+
+    // Scores
+    const hookScore=hook.hookStrength+Math.floor(Math.random()*4)-2;
+    const retScore=arc.retentionScore+Math.floor(Math.random()*5)-2;
+    const relScore=88+Math.floor(Math.random()*8);
+    const cohScore=94+Math.floor(Math.random()*6);
+
+    // Build full text
+    const full=buildFull(title,animal,env,hook,care,payoff,arc);
+    currentFull=full;
+    currentTitle=title;
+    currentSubject=buildSubjectText(animal);
+
+    // Render
+    renderAll(title,animal,env,hook,care,payoff,arc,hookScore,retScore,relScore,cohScore,arcKey);
+
+    // Update stats
+    count++;
+    document.getElementById('sCount').textContent=count;
+    document.getElementById('sHook').textContent=hookScore+'%';
+    document.getElementById('sRet').textContent=retScore+'%';
+    document.getElementById('sRel').textContent=relScore+'%';
+
+    // Animate scores
+    setTimeout(()=>{
+      setScore(1,hookScore);setScore(2,retScore);setScore(3,relScore);setScore(4,cohScore);
+    },100);
+
+    // Session
+    session.unshift({title,envLabel:env.label,arcLabel:arc.label,arcKey});
+    renderHistory();
+
+    btn.classList.remove('loading');
+    document.getElementById('genIcon').textContent='⚡';
+    document.getElementById('genTxt').textContent='GENERATE';
+
+    const out=document.getElementById('output');
+    out.style.display='block';
+    out.classList.add('show');
+
+    // Open first cut
+    setTimeout(()=>{
+      const first=document.querySelector('.cut-card');
+      if(first) toggleCut(first);
+    },200);
+
+  },350);
+}
+
+function setScore(n,val){
+  document.getElementById('sc'+n).style.width=val+'%';
+  document.getElementById('sv'+n).textContent=val+'%';
+}
+
+function buildSubjectText(a){
+  return `SUBJECT ANCHOR — ${a.aiAnchor}
+
+Species: ${a.species} | Age: ${a.ageDesc}
+Colour: ${a.colorDesc}
+Fur: ${a.furDesc}
+Size: ${a.sizeDesc}
+Eyes: ${a.eyeDesc}
+Markings: ${a.markingDesc}
+Emotional state: ${a.emotState}
+Micro-movements: ${a.microMove}`;
+}
+
+function buildFull(title,a,e,h,c,p,arc){
+  return `═══════════════════════════════════════════════
+TITLE: ${title}
+═══════════════════════════════════════════════
+
+FORMAT: Vertical 9:16 | 15 seconds | Ultra-photorealistic
+Camera: First-person POV smartphone | Natural handheld micro-shake
+Audio: Natural ambient only | No music | No narration | No subtitles
+Lighting: ${e.light}
+Arc: ${arc.label}
+
+═══════════════════════════════════════════════
+SUBJECT ANCHOR (maintain identical identity across all 5 cuts)
+═══════════════════════════════════════════════
+Species: ${a.species} | Age: ${a.ageDesc}
+Colour: ${a.colorDesc}
+Fur: ${a.furDesc}
+Size: ${a.sizeDesc}
+Eyes: ${a.eyeDesc}
+Markings: ${a.markingDesc}
+Emotional state: ${a.emotState}
+Micro-movements (mandatory, every cut): ${a.microMove}
+${a.aiAnchor}
+
+═══════════════════════════════════════════════
+CUT 1 (0–3s) — EXTREME HOOK [${arc.label.toUpperCase()}]
+═══════════════════════════════════════════════
+Shot type: Extreme wide into fast push-zoom (28mm equivalent → 85mm equivalent)
+Lens: Smartphone wide lens, slight barrel distortion, autofocus breathing
+${arc.hookEmphasis}
+
+${h.text(a,e)}
+
+Sound: ${e.sound}
+Lighting: ${e.light}
+Environment: ${e.setting}
+
+═══════════════════════════════════════════════
+CUT 2 (3–6s) — DISCOVERY / PROBLEM
+═══════════════════════════════════════════════
+Shot type: MCU (mid close-up) — subject fills 60% of vertical frame
+${arc.cut2Pace}
+
+Camera descends to animal eye-level. The ${a.species} — ${a.colorDesc}, ${a.furDesc} — is fully visible. The ${a.emotState}. Micro-movements are continuous and prominent: ${a.microMove}. Hold on ${a.eyeDesc} eyes for at least 1.5 seconds. No human faces. Camera breathes — natural handheld oscillation at 1Hz. Sound: ${e.sound}, animal vocalisation.
+
+Environment still visible in background: ${e.setting}
+
+═══════════════════════════════════════════════
+CUT 3 (6–9s) — RESCUE ACTION
+═══════════════════════════════════════════════
+Shot type: OTS (over-the-shoulder POV) into CU of animal being lifted
+${arc.cut3Pace}
+
+Hands (gloved or bare — consistent across cuts) enter from lower frame. Approach is from the side — not directly toward the face to avoid startle. The ${a.species} is lifted carefully — one hand under chest, one supporting hindquarters. Brief resistance (1 second) then animal stills. Camera pulls back to show the animal now held against the body. The ${a.colorDesc} fur and ${a.eyeDesc} eyes clearly visible. Sound: ${e.sound} fading, animal sound changing pitch.
+
+═══════════════════════════════════════════════
+CUT 4 (9–12s) — CARE / TRANSFORMATION
+═══════════════════════════════════════════════
+Shot type: CU (close-up) on animal during care, MCU for wider context
+${arc.cut4Pace}
+
+${c.text(a)}
+
+The ${a.colorDesc} coat becomes progressively more vivid and clean. The ${a.emotState} visibly reduces — muscle groups releasing, micro-movements shifting from distress to comfort: ${a.microMove}. No human face visible.
+
+═══════════════════════════════════════════════
+CUT 5 (12–15s) — EMOTIONAL PAYOFF
+═══════════════════════════════════════════════
+Shot type: ECU (extreme close-up) push-in over 3 seconds — ends tight on face
+${arc.cut5Pace}
+
+${p.text(a)}
+
+Final frame: the ${a.colorDesc} ${a.species}, ${a.eyeDesc} eyes at peace. Sound fades to near-silence. Camera holds 1 second completely still before end.
+
+═══════════════════════════════════════════════
+TECHNICAL CONSTRAINTS
+═══════════════════════════════════════════════
+• Format: Vertical 9:16 only
+• Duration: 15 seconds total
+• Style: Ultra-photorealistic — no stylisation, no filters
+• Camera: First-person POV smartphone, natural handheld micro-shake at 0.5–1Hz
+• Autofocus breathing: visible on subject in all cuts
+• Motion blur: mild, only on fast movements
+• Lighting: natural only — ${e.light} — no cinematic lighting rigs
+• Audio: natural ambient only — ${e.sound} — no music, no narration, no subtitles, no text
+• Human faces: never visible in any cut
+• Physics: fully plausible — no clipping, no impossible movement
+• Animal identity: ${a.aiAnchor}
+• Micro-movements: mandatory in every cut — ${a.microMove}
+• Static shots: maximum 1 second without camera or subject movement`;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════════════════
+
+function renderAll(title,a,e,h,c,p,arc,hs,rs,rls,cs,arcKey){
+  document.getElementById('titleDisplay').textContent=title;
+
+  // Meta
+  const arcColors={fast:'var(--a)',slow:'var(--a3)',double:'var(--a2)'};
+  document.getElementById('metaRow').innerHTML=`
+    <div class="meta-pill"><span class="dot" style="background:${arcColors[arcKey]}"></span>${arc.label} Arc</div>
+    <div class="meta-pill env"><span class="dot"></span>${e.label}</div>
+    <div class="meta-pill"><span class="dot" style="background:var(--muted)"></span>${h.label} Hook</div>
+    <div class="meta-pill"><span class="dot" style="background:var(--muted)"></span>${a.species}</div>
+    <div class="meta-pill"><span class="dot" style="background:var(--muted)"></span>${e.type}</div>
+  `;
+
+  // Subject grid
+  document.getElementById('subjectGrid').innerHTML=`
+    <div class="subject-field"><div class="sf-label">Species & Age</div><div class="sf-val">${a.species}, ${a.ageDesc}</div></div>
+    <div class="subject-field"><div class="sf-label">Colour & Pattern</div><div class="sf-val">${a.colorDesc}</div></div>
+    <div class="subject-field"><div class="sf-label">Fur Condition</div><div class="sf-val">${a.furDesc}</div></div>
+    <div class="subject-field"><div class="sf-label">Size</div><div class="sf-val">${a.sizeDesc}</div></div>
+    <div class="subject-field"><div class="sf-label">Eyes</div><div class="sf-val">${a.eyeDesc}</div></div>
+    <div class="subject-field"><div class="sf-label">Identifying Marks</div><div class="sf-val">${a.markingDesc}</div></div>
+    <div class="subject-field" style="grid-column:1/-1"><div class="sf-label">Emotional State</div><div class="sf-val">${a.emotState}</div></div>
+    <div class="subject-field" style="grid-column:1/-1"><div class="sf-label">Mandatory Micro-Movements</div><div class="sf-val">${a.microMove}</div></div>
+  `;
+  document.getElementById('anchorNote').textContent='⚡ '+a.aiAnchor;
+
+  // Cuts
+  const cuts=[
+    {num:'01',name:'Extreme Hook',timing:'0 – 3s',
+     sections:[
+       {label:'Arc Instruction',text:arc.hookEmphasis},
+       {label:'Shot Type',text:'Extreme wide → fast push-zoom (28mm → 85mm equivalent), autofocus breathing, barrel distortion'},
+       {label:'Scene',text:h.text(a,e)},
+       {label:'Sound',text:e.sound},
+       {label:'Lighting',text:e.light}
+     ]
+    },
+    {num:'02',name:'Discovery / Problem',timing:'3 – 6s',
+     sections:[
+       {label:'Pacing',text:arc.cut2Pace},
+       {label:'Shot Type',text:'MCU — subject fills 60% of vertical frame, eye-level camera'},
+       {label:'Scene',text:`Camera descends to animal eye-level. The ${a.species} — ${a.colorDesc}, ${a.furDesc} — fully revealed. ${a.emotState}. Micro-movements prominent: ${a.microMove}. Hold on ${a.eyeDesc} eyes for 1.5+ seconds. No human faces. Sound: ${e.sound}, animal vocalisation.`},
+       {label:'Background',text:e.setting}
+     ]
+    },
+    {num:'03',name:'Rescue Action',timing:'6 – 9s',
+     sections:[
+       {label:'Pacing',text:arc.cut3Pace},
+       {label:'Shot Type',text:'OTS (over-the-shoulder POV) → CU of animal being lifted'},
+       {label:'Scene',text:`Hands enter from lower frame. Approach from the side. ${a.species} lifted — one hand under chest, one supporting hindquarters. Brief resistance (1s) then animal stills. Pull back to show animal held. ${a.colorDesc} fur and ${a.eyeDesc} eyes clearly visible. Sound: ${e.sound} fading, animal sound changing pitch.`}
+     ]
+    },
+    {num:'04',name:'Cleaning / Care',timing:'9 – 12s',
+     sections:[
+       {label:'Pacing',text:arc.cut4Pace},
+       {label:'Shot Type',text:'CU on animal during care, MCU for wider context'},
+       {label:'Scene',text:c.text(a)},
+       {label:'Transformation',text:`${a.colorDesc} coat becomes more vivid. ${a.emotState} reduces — micro-movements shift from distress to comfort.`}
+     ]
+    },
+    {num:'05',name:'Emotional Payoff',timing:'12 – 15s',
+     sections:[
+       {label:'Pacing',text:arc.cut5Pace},
+       {label:'Shot Type',text:'ECU push-in over 3 seconds — ends tight on face. Final 1s: camera completely still.'},
+       {label:'Scene',text:p.text(a)}
+     ]
+    }
+  ];
+
+  document.getElementById('cutsGrid').innerHTML=cuts.map((cut,i)=>`
+    <div class="cut-card" id="cut${i}">
+      <div class="cut-header" onclick="toggleCut(this.parentElement)">
+        <span class="cut-num">${cut.num}</span>
+        <span class="cut-name">${cut.name}</span>
+        <button class="cut-copy" onclick="event.stopPropagation();cpCut(${i})">Copy Cut</button>
+        <span class="cut-timing">${cut.timing}</span>
+        <span class="cut-chevron">▾</span>
+      </div>
+      <div class="cut-body">
+        ${cut.sections.map(s=>`
+          <div class="cut-section">
+            <div class="cs-label">${s.label}</div>
+            <div class="cs-text">${s.text}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleCut(card){
+  card.classList.toggle('open');
+}
+
+function renderHistory(){
+  const s=document.getElementById('historySection');
+  const l=document.getElementById('historyList');
+  if(session.length===0) return;
+  s.style.display='block';
+  l.innerHTML=session.slice(0,8).map((item,i)=>`
+    <div class="history-row">
+      <span class="hr-num">#${session.length-i}</span>
+      <span class="hr-title">${item.title}</span>
+      <span class="hr-tag">${item.envLabel}</span>
+      <span class="hr-arc">${item.arcLabel}</span>
+    </div>
+  `).join('');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// COPY
+// ═══════════════════════════════════════════════════════════════════
+
+const cutTexts=[];
+
+function cpCut(i){
+  const card=document.getElementById('cut'+i);
+  const text=card.querySelector('.cut-body').innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=card.querySelector('.cut-copy');
+    flash(btn,'Copied!','ok');
+  });
+}
+
+function cp(type){
+  let text='';
+  let btnId='';
+  if(type==='title'){text=currentTitle;btnId='copyTitleBtn';}
+  else if(type==='subject'){text=currentSubject;btnId='';}
+  else if(type==='full'){text=currentFull;btnId='fullCopyBtn';}
+  if(!text) return;
+  navigator.clipboard.writeText(text).then(()=>{
+    if(btnId) flash(document.getElementById(btnId),'✓ Copied','ok');
+  });
+}
+
+function flash(btn,msg,cls){
+  const orig=btn.textContent;
+  btn.textContent=msg;
+  btn.classList.add(cls);
+  setTimeout(()=>{btn.textContent=orig;btn.classList.remove(cls);},2000);
+}
+</script>
 </body>
 </html>
